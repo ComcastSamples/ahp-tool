@@ -1,0 +1,496 @@
+/*! Started from HTML5 Boilerplate v5.0 | MIT License | http://h5bp.com/ */
+
+html {
+  color: #222;
+  font-size: 1em;
+  line-height: 1.4;
+}
+
+body {
+  margin: 0;
+}
+
+::-moz-selection {
+  background: #b3d4fc;
+  text-shadow: none;
+}
+
+::selection {
+  background: #b3d4fc;
+  text-shadow: none;
+}
+
+fieldset {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+/* ===== Initializr Styles ==================================================
+   Author: Jonathan Verrecchia - verekia.com/initializr/responsive-template
+   ========================================================================== */
+
+body {
+  font: 16px/26px Helvetica, Helvetica Neue, Arial;
+}
+
+.wrapper {
+  width: 90%;
+  margin: 0 auto;
+}
+
+/* ===================
+  ALL: Orange Theme
+   =================== */
+
+.header-container {
+  border-bottom: 20px solid #e44d26;
+}
+
+.footer-container,
+.main aside {
+  border-top: 20px solid #e44d26;
+}
+
+.header-container,
+.footer-container,
+.main aside {
+  background: #f16529;
+}
+
+header h1 {
+  color: white;
+  margin: 0;
+  padding: 1em 0;
+}
+
+/* ==============
+  MOBILE: Main
+   ============== */
+
+.main {
+  padding: 30px 0;
+}
+
+.main section h1 {
+  font-size: 2em;
+}
+
+.main aside {
+  color: white;
+  padding: 0px 5% 10px;
+}
+
+.footer-container footer {
+  color: white;
+  padding: 20px 0;
+}
+
+.main aside a,
+.footer-container footer a {
+  color: #ffc;
+}
+
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+
+h1 {
+  color: #e44d26;
+}
+
+h2 {
+  color: #f16529;
+  border-top: 1px solid #f16529;
+  margin-bottom: 0;
+  padding: 0.5em 0;
+}
+
+textarea {
+  width: 100%;
+  min-height: 175px;
+  padding: 0.5em;
+}
+
+textarea, input[type="text"] {
+  font-size: 36px;
+  box-sizing: border-box;
+}
+
+table {
+  border-spacing: 0;
+}
+
+td, th {
+  padding: 5px;
+}
+
+input[type="text"] {
+  display: block;
+  width: 100%;
+  margin: 0 0 0.5em;
+}
+
+.pairwisetable input[type="text"] {
+  margin: 0;
+}
+
+td input {
+  width: 100%;
+  display: inline-block;
+  margin: 0;
+}
+
+button {
+  font-size: 60px;
+  padding: 0.5em;
+}
+
+/* ==========================================================================
+   Classes to hide unused inputs
+   ========================================================================== */
+
+.pairwise_criteria tr[class],
+thead th[class],
+.pairwise_criteria td,
+.pairwise_items > section,
+.pairwise_items tr[class],
+thead th[class],
+.pairwise_items td {
+  display: none;
+}
+
+.active_crit0 tr.crit0,
+.active_crit1 tr.crit1,
+.active_crit2 tr.crit2,
+.active_crit3 tr.crit3,
+.active_crit4 tr.crit4,
+.active_crit5 tr.crit5,
+.active_crit6 tr.crit6,
+.active_crit7 tr.crit7,
+.active_item0 tr.item0,
+.active_item1 tr.item1,
+.active_item2 tr.item2,
+.active_item3 tr.item3,
+.active_item4 tr.item4,
+.active_item5 tr.item5,
+.active_item6 tr.item6,
+.active_item7 tr.item7 {
+  display: table-row;
+}
+
+.active_crit0 .c0_items,
+.active_crit1 .c1_items,
+.active_crit2 .c2_items,
+.active_crit3 .c3_items,
+.active_crit4 .c4_items,
+.active_crit5 .c5_items,
+.active_crit6 .c6_items,
+.active_crit7 .c7_items {
+  display: block;
+}
+
+.active_crit0 th.crit0,
+.active_crit1 th.crit1,
+.active_crit2 th.crit2,
+.active_crit3 th.crit3,
+.active_crit4 th.crit4,
+.active_crit5 th.crit5,
+.active_crit6 th.crit6,
+.active_crit7 th.crit7,
+.active_crit0 td.crit0,
+.active_crit1 td.crit1,
+.active_crit2 td.crit2,
+.active_crit3 td.crit3,
+.active_crit4 td.crit4,
+.active_crit5 td.crit5,
+.active_crit6 td.crit6,
+.active_crit7 td.crit7,
+.active_item0 th.item0,
+.active_item1 th.item1,
+.active_item2 th.item2,
+.active_item3 th.item3,
+.active_item4 th.item4,
+.active_item5 th.item5,
+.active_item6 th.item6,
+.active_item7 th.item7,
+.active_item0 td.item0,
+.active_item1 td.item1,
+.active_item2 td.item2,
+.active_item3 td.item3,
+.active_item4 td.item4,
+.active_item5 td.item5,
+.active_item6 td.item6,
+.active_item7 td.item7 {
+  display: table-cell;
+}
+
+/* ==========================================================================
+   "Winner" and "Loser" visible assistance
+   ========================================================================== */
+
+th.winner,
+.winner th {
+  position: relative;
+}
+
+th.winner::after,
+.winner th::after {
+  content: "🏆";
+  position: absolute;
+}
+
+th.winner::after {
+  top: -1.5em;
+  left: 50%;
+  margin-left: -0.5em;
+}
+
+.winner th::after {
+  top: 50%;
+  left: -1.3em;
+  margin-top: -0.8em;
+}
+
+.winner th,
+.winner td,
+td.winner,
+th.winner {
+  background-color: #c1ffbc;
+}
+
+.loser th,
+.loser td,
+td.loser,
+th.loser {
+  background-color: #ffd4d5;
+}
+
+.equal_weight th,
+.equal_weight td,
+td.equal_weight,
+th.equal_weight {
+  background-color: #B7FFFF;
+}
+
+tr.winner td.loser,
+tr.loser td.winner {
+  /* intersection of winner + loser, i.e. the active input */
+  background-color: #c1d49d;
+}
+
+input:active,
+input:focus,
+input.related {
+  background-color: #ffc;
+}
+
+/* ==========================================================================
+   Chartist
+   ========================================================================== */
+
+.ct-label {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  color: #333;
+  width: 100px;
+}
+
+.ct-bar {
+  /* The width of your bars */
+  stroke-width: 40px;
+}
+
+/*
+  Default Stroke Color Order:
+  #d70206
+  #f05b4f
+  #f4c63d
+  #d17905
+  #453d3f
+  #59922b
+  #0544d3
+  #6b0392
+*/
+
+.total-criteria-8 .ct-series line:nth-of-type(8),
+.total-criteria-7 .ct-series line:nth-of-type(7),
+.total-criteria-6 .ct-series line:nth-of-type(6),
+.total-criteria-5 .ct-series line:nth-of-type(5),
+.total-criteria-4 .ct-series line:nth-of-type(4),
+.total-criteria-3 .ct-series line:nth-of-type(3),
+.total-criteria-2 .ct-series line:nth-of-type(2),
+.total-criteria-1 .ct-series line:nth-of-type(1) {
+  stroke: #d70206;
+}
+.total-criteria-8 .ct-series line:nth-of-type(7),
+.total-criteria-7 .ct-series line:nth-of-type(6),
+.total-criteria-6 .ct-series line:nth-of-type(5),
+.total-criteria-5 .ct-series line:nth-of-type(4),
+.total-criteria-4 .ct-series line:nth-of-type(3),
+.total-criteria-3 .ct-series line:nth-of-type(2),
+.total-criteria-2 .ct-series line:nth-of-type(1) {
+  stroke: #f05b4f;
+}
+.total-criteria-8 .ct-series line:nth-of-type(6),
+.total-criteria-7 .ct-series line:nth-of-type(5),
+.total-criteria-6 .ct-series line:nth-of-type(4),
+.total-criteria-5 .ct-series line:nth-of-type(3),
+.total-criteria-4 .ct-series line:nth-of-type(2),
+.total-criteria-3 .ct-series line:nth-of-type(1) {
+  stroke: #f4c63d;
+}
+.total-criteria-8 .ct-series line:nth-of-type(5),
+.total-criteria-7 .ct-series line:nth-of-type(4),
+.total-criteria-6 .ct-series line:nth-of-type(3),
+.total-criteria-5 .ct-series line:nth-of-type(2),
+.total-criteria-4 .ct-series line:nth-of-type(1) {
+  stroke: #d17905;
+}
+.total-criteria-8 .ct-series line:nth-of-type(4),
+.total-criteria-7 .ct-series line:nth-of-type(3),
+.total-criteria-6 .ct-series line:nth-of-type(2),
+.total-criteria-5 .ct-series line:nth-of-type(1) {
+  stroke: #453d3f;
+}
+.total-criteria-8 .ct-series line:nth-of-type(3),
+.total-criteria-7 .ct-series line:nth-of-type(2),
+.total-criteria-6 .ct-series line:nth-of-type(1) {
+  stroke: #59922b;
+}
+.total-criteria-8 .ct-series line:nth-of-type(2),
+.total-criteria-7 .ct-series line:nth-of-type(1) {
+  stroke: #0544d3;
+}
+.total-criteria-8 .ct-series line:nth-of-type(1) {
+  stroke: #6b0392;
+}
+
+/* ==========================================================================
+   Media Queries
+   ========================================================================== */
+
+@media only screen and (min-width: 768px) {
+
+/* ====================
+  WIDE: CSS3 Effects
+   ==================== */
+
+  .header-container,
+  .main aside {
+    -webkit-box-shadow: 0 5px 10px #aaa;
+       -moz-box-shadow: 0 5px 10px #aaa;
+        box-shadow: 0 5px 10px #aaa;
+  }
+
+/* ============
+  WIDE: Main
+   ============ */
+
+  .main aside {
+    float: right;
+    width: 28%;
+  }
+
+  textarea {
+    width: 57%;
+  }
+}
+
+/* ==========================================================================
+   Helper classes
+   ========================================================================== */
+
+.hidden {
+  display: none !important;
+  visibility: hidden;
+}
+
+.visuallyhidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+.visuallyhidden.focusable:active,
+.visuallyhidden.focusable:focus {
+  clip: auto;
+  height: auto;
+  margin: 0;
+  overflow: visible;
+  position: static;
+  width: auto;
+}
+
+.invisible {
+  visibility: hidden;
+}
+
+/* ==========================================================================
+   Print styles
+   ========================================================================== */
+
+@media print {
+  *,
+  *:before,
+  *:after {
+    background: transparent !important;
+    color: #000 !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  a,
+  a:visited {
+    text-decoration: underline;
+  }
+
+  a[href]:after {
+    content: " (" attr(href) ")";
+  }
+
+  abbr[title]:after {
+    content: " (" attr(title) ")";
+  }
+
+  a[href^="#"]:after,
+  a[href^="javascript:"]:after {
+    content: "";
+  }
+
+  pre,
+  blockquote {
+    border: 1px solid #999;
+    page-break-inside: avoid;
+  }
+
+  thead {
+    display: table-header-group;
+  }
+
+  tr,
+  img {
+    page-break-inside: avoid;
+  }
+
+  img {
+    max-width: 100% !important;
+  }
+
+  p,
+  h2,
+  h3 {
+    orphans: 3;
+    widows: 3;
+  }
+
+  h2,
+  h3 {
+    page-break-after: avoid;
+  }
+}
