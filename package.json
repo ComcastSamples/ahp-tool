@@ -1,0 +1,22 @@
+{
+  "name": "ahp-tool",
+  "version": "0.1.0",
+  "description": "Analytic Hierarchy Process (AHP) Tool",
+  "main": "js/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ComcastSamples/ahp-tool.git"
+  },
+  "keywords": [
+    "AHP"
+  ],
+  "author": "John Riviello",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/ComcastSamples/ahp-tool/issues"
+  },
+  "homepage": "https://github.com/ComcastSamples/ahp-tool#readme"
+}
