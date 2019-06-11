@@ -5,7 +5,7 @@
   "main": "js/index.js",
   "scripts": {
     "build": "./node_modules/rollup/bin/rollup -c",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "./node_modules/mocha/bin/mocha"
   },
   "repository": {
     "type": "git",
@@ -22,7 +22,10 @@
   "homepage": "https://comcastsamples.github.io/ahp-tool/",
   "devDependencies": {
     "ahp": "^2.2.2",
+    "chai": "^4.2.0",
     "chartist": "0.11.0",
+    "jsdom": "^15.1.1",
+    "mocha": "^6.1.4",
     "rollup": "^1.14.6",
     "rollup-plugin-commonjs": "^10.0.0",
     "rollup-plugin-node-builtins": "^2.1.2",
