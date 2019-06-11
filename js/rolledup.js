@@ -68900,7 +68900,7 @@ var iAmSuchAHack = function(myItems, myCriteria, myCriteriaItemRank, myCriteriaR
 	  return label;
 	});
 
-	const criterasWithScores = zipWith(criteriaLabels, criteriaWeights, (criteria, score) => {
+	const criteriasWithScores = zipWith(criteriaLabels, criteriaWeights, (criteria, score) => {
 	  return `${criteria}: ${Number.parseFloat(score).toFixed(3)}`;
 	});
 
@@ -68908,32 +68908,19 @@ var iAmSuchAHack = function(myItems, myCriteria, myCriteriaItemRank, myCriteriaR
 	  return `${alternative}: ${Number.parseFloat(score).toFixed(3)}`;
 	});
 
-	new chartist.Bar('#criteria', {
-	  labels: criterasWithScores,
-	  series: [criteriaWeights]
-	}, {
-	  stackBars: true,
-	  horizontalBars: true,
-	  reverseData: true,
-	  axisY: {
-	    offset: 100
-	  }
-	});
-
-	new chartist.Bar('#rankings', {
-	  labels: alternativesWithScores,
-	  series: unzip(alternativesPriorityMatrix)
-	}, {
-	  stackBars: true,
-	  horizontalBars: true,
-	  reverseData: true,
-	  axisY: {
-	    offset: 100
-	  }
-	});
-
+	return {
+		criteria: {
+			labels: criteriasWithScores,
+			series: [criteriaWeights],
+		},
+		rankings: {
+			labels: alternativesWithScores,
+			series: unzip(alternativesPriorityMatrix),
+		},
+	}
 }
 
+window.chartist = chartist;
 window.runCalculation = iAmSuchAHack;
 
 }());
