@@ -70746,9 +70746,9 @@
 	  return unzipWith(arrays, iteratee);
 	});
 
-	var iAmSuchAHack = function(myItems, myCriteria, myCriteriaItemRank, myCriteriaRank) {
+	const inputsToAhpResults = function(myItems, myCriteria, myCriteriaItemRank, myCriteriaRank) {
 
-	  var ahpContext = new ahp$1();
+	  const ahpContext = new ahp$1();
 
 		ahpContext.import({
 		  items: myItems,
@@ -70757,7 +70757,7 @@
 			criteriaRank: myCriteriaRank,
 		});
 
-		let output = ahpContext.debug();
+		const output = ahpContext.debug();
 
 		const criteria = Object.keys(output.itemRankMetaMap);
 		const criteriaWeights = output.criteriaRankMetaMap.weightedVector;
@@ -70796,6 +70796,6 @@
 	};
 
 	window.chartist = chartist;
-	window.runCalculation = iAmSuchAHack;
+	window.runCalculation = inputsToAhpResults;
 
 }());

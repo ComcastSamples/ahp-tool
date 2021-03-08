@@ -3,9 +3,9 @@ import AHP from 'ahp'
 import zipWith from 'lodash-es/zipWith'
 import unzip from 'lodash-es/unzip'
 
-var iAmSuchAHack = function(myItems, myCriteria, myCriteriaItemRank, myCriteriaRank) {
+const inputsToAhpResults = function(myItems, myCriteria, myCriteriaItemRank, myCriteriaRank) {
 
-  var ahpContext = new AHP();
+  const ahpContext = new AHP();
 
 	ahpContext.import({
 	  items: myItems,
@@ -14,7 +14,7 @@ var iAmSuchAHack = function(myItems, myCriteria, myCriteriaItemRank, myCriteriaR
 		criteriaRank: myCriteriaRank,
 	});
 
-	let output = ahpContext.debug();
+	const output = ahpContext.debug();
 
 	const criteria = Object.keys(output.itemRankMetaMap);
 	const criteriaWeights = output.criteriaRankMetaMap.weightedVector;
@@ -53,4 +53,4 @@ var iAmSuchAHack = function(myItems, myCriteria, myCriteriaItemRank, myCriteriaR
 }
 
 window.chartist = chartist;
-window.runCalculation = iAmSuchAHack;
+window.runCalculation = inputsToAhpResults;
