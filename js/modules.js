@@ -32,22 +32,7 @@ var iAmSuchAHack = function(myItems, myCriteria, myCriteriaItemRank, myCriteriaR
 	  alternativesPriorityMatrix[alternativeIndex] = scoresMultipliedByCriteriaWeight.reverse();
 	});
 
-	// Adjusting the label names rendered in the chart
-	const criteriaLabels = criteria.map(label => {
-	  if (label == 'Performant') {
-	    return 'Performance';
-	  }
-	  if (label == 'Syn_l10n') {
-	    return 'Syndication/ Localization';
-	  }
-	  if (label == 'CommunityDevExp') {
-	    return 'Community + Productivity';
-	  }
-
-	  return label;
-	});
-
-	const criteriasWithScores = zipWith(criteriaLabels, criteriaWeights, (criteria, score) => {
+	const criteriasWithScores = zipWith(criteria, criteriaWeights, (criteria, score) => {
 	  return `${criteria}: ${Number.parseFloat(score).toFixed(3)}`;
 	});
 
