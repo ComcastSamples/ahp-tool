@@ -310,7 +310,31 @@ let runAHP = function(event) {
 
   applyTotalCriteriaClassName();
 
-  window.runCalculation(items, criteria, criteriaItemRank, criteriaRank);
+  let decision = window.runCalculation(items, criteria, criteriaItemRank, criteriaRank);
+
+	new window.chartist.Bar('#criteria', {
+	  labels: decision.criteria.labels,
+	  series: decision.criteria.series
+	}, {
+	  stackBars: true,
+	  horizontalBars: true,
+	  reverseData: true,
+	  axisY: {
+	    offset: 100
+	  }
+	});
+
+	new window.chartist.Bar('#rankings', {
+	  labels: decision.rankings.labels,
+	  series: decision.rankings.series,
+	}, {
+	  stackBars: true,
+	  horizontalBars: true,
+	  reverseData: true,
+	  axisY: {
+	    offset: 100
+	  }
+	});
 
   event.preventDefault();
 

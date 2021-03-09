@@ -1,0 +1,37 @@
+{
+  "name": "ahp-tool",
+  "version": "0.1.0",
+  "description": "Analytic Hierarchy Process (AHP) Tool",
+  "main": "js/index.js",
+  "scripts": {
+    "build": "./node_modules/rollup/bin/rollup -c",
+    "test": "./node_modules/mocha/bin/mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ComcastSamples/ahp-tool.git"
+  },
+  "keywords": [
+    "AHP"
+  ],
+  "author": "John Riviello",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/ComcastSamples/ahp-tool/issues"
+  },
+  "homepage": "https://comcastsamples.github.io/ahp-tool/",
+  "dependencies": {
+    "ahp": "^2.2.2",
+    "chartist": "0.11.0",
+    "lodash-es": "^4.17.10"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "jsdom": "^15.1.1",
+    "mocha": "^8.3.1",
+    "rollup": "^1.14.6",
+    "rollup-plugin-commonjs": "^10.0.0",
+    "rollup-plugin-node-builtins": "^2.1.2",
+    "rollup-plugin-node-resolve": "^5.0.1"
+  }
+}
