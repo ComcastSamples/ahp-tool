@@ -9,7 +9,13 @@
     <link rel="stylesheet" href="css/chartist.min.css">
     <link rel="stylesheet" href="css/styles.css">
 
-    <script>var global = window;</script>
+    <script>
+      var global = window;
+      // Must remove query params to prevent interference with the auto-save/auto-load feature
+      if (window.location.search) {
+        window.location = window.location.pathname;
+      }
+    </script>
     <script defer src="js/index.js"></script>
     <script defer src="js/rolledup.js"></script>
   </head>
@@ -25,12 +31,15 @@
       <aside>
         <h3>New to the AHP?</h3>
         <p>Check out <a href="https://en.wikipedia.org/wiki/Analytic_hierarchy_process" target="_blank">Wikipedia's article on it</a>.</p>
+        <h3>Data Management</h3>
+        <p><a onclick="resetForm()">RESET</a> - <a onclick="exportForm()">EXPORT</a> - <a onclick="importForm()">IMPORT</a></p>
+        <p>NOTE: Reset when starting a new form</p>
       </aside>
 
       <form id="ahpdata" name="ahpdata">
         <section>
           <h1>Your Goal</h1>
-          <textarea></textarea>
+          <textarea id="goal"></textarea>
         </section>
         <section id="criteria_inputs">
           <h1>Your Criteria</h1>
@@ -59,6 +68,7 @@
 
         <section id="pairwise_criteria" class="pairwise_criteria pairwisetable">
           <h1>Pairwise Comparisons For Your Criteria With Respect To Your Goal</h1>
+          <h3 id="pairwise_criteria_sentence"></h3>
           <table>
             <thead>
               <tr>
@@ -172,6 +182,7 @@
 
           <section id="c0_items" class="c0_items">
             <h2 class="criteria0"></h2>
+            <h3 id="criteria0_sentence"></h3>
             <table>
               <thead>
                 <tr>
@@ -281,6 +292,7 @@
 
           <section id="c1_items" class="c1_items">
             <h2 class="criteria1"></h2>
+            <h3 id="criteria1_sentence"></h3>
             <table>
               <thead>
                 <tr>
@@ -390,6 +402,7 @@
 
           <section id="c2_items" class="c2_items">
             <h2 class="criteria2"></h2>
+            <h3 id="criteria2_sentence"></h3>
             <table>
               <thead>
                 <tr>
@@ -499,6 +512,7 @@
 
           <section id="c3_items" class="c3_items">
             <h2 class="criteria3"></h2>
+            <h3 id="criteria3_sentence"></h3>
             <table>
               <thead>
                 <tr>
@@ -608,6 +622,7 @@
 
           <section id="c4_items" class="c4_items">
             <h2 class="criteria4"></h2>
+            <h3 id="criteria4_sentence"></h3>
             <table>
               <thead>
                 <tr>
@@ -717,6 +732,7 @@
 
           <section id="c5_items" class="c5_items">
             <h2 class="criteria5"></h2>
+            <h3 id="criteria5_sentence"></h3>
             <table>
               <thead>
                 <tr>
@@ -826,6 +842,7 @@
 
           <section id="c6_items" class="c6_items">
             <h2 class="criteria6"></h2>
+            <h3 id="criteria6_sentence"></h3>
             <table>
               <thead>
                 <tr>
@@ -935,6 +952,7 @@
 
           <section id="c7_items" class="c7_items">
             <h2 class="criteria7"></h2>
+            <h3 id="criteria7_sentence"></h3>
             <table>
               <thead>
                 <tr>

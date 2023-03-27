@@ -1,3 +1,4 @@
+const goalInput = document.getElementById("goal");
 const criteriaInputs = document.querySelectorAll('#criteria_inputs > input');
 const itemInputs = document.querySelectorAll('#items_inputs > input');
 const pairwiseInputs = document.querySelectorAll('.pairwisetable input');
@@ -19,6 +20,7 @@ let updateCriteriaTable = function(input) {
     document.getElementById('pairwise_criteria').classList.remove(activeClass);
     document.getElementById('pairwise_items').classList.remove(activeClass);
   }
+  saveInputValue(input.target)
 }
 
 let updateItemTables = function(input) {
@@ -36,6 +38,7 @@ let updateItemTables = function(input) {
   } else {
     document.getElementById('pairwise_items').classList.remove(activeClass);
   }
+  saveInputValue(input.target)
 }
 
 let getRelatedInputId = function(activeInputId) {
@@ -81,6 +84,13 @@ let getItemSectionId = function(id) {
   // section ID: c0_items
   return id.substr(0,7) + 's';
 };
+
+let getItemSectionNumber = function(id) {
+  // Item Form: c0_item2v0
+  // section ID: c0_items
+  return id.substr(1,1);
+};
+
 
 let inputIsCriteria = function(input) {
   return input.id.indexOf('criteria') === 0;
@@ -151,21 +161,46 @@ let styleColumnAsEqualWeight = function(input) {
   styleColumn(input, 'equal_weight');
 }
 
-let handlePair = function(event) {
+let clearDescriptiveSentence = function(input) {
+  updateDescriptiveSentence(input, true);
+}
 
+let updateDescriptiveSentence = function(input, clear=false) {
+  let row = getPairwiseInputRow(input.id);
+  let col = getPairwiseInputColumn(input.id);
+  
+  if (inputIsCriteria(input)) {
+    let A = document.getElementById('criteria'+row).value;
+    let B = document.getElementById('criteria'+col).value;
+    let sentence = document.getElementById('pairwise_criteria_sentence');
+    sentence.innerHTML = clear ? '' : 'Rate '+A+'\'s importance over '+B+' <small>(1=equal, 3=moderate, 5=strong, 9=extreme)</small>'
+  } else {
+    let item = getItemSectionNumber(input.id);
+    let A = document.getElementById('item'+row).value;
+    let B = document.getElementById('item'+col).value;
+    let I = document.getElementById('criteria'+item).value;
+    let sentence = document.getElementById('criteria'+item+'_sentence');
+    sentence.innerHTML = clear ? '' : 'For '+I+' rate '+A+'\'s importance over '+B+' <small>(1=equal, 3=moderate, 5=strong, 9=extreme)</small>'
+  }
+}
+
+let handlePair = function(event) {
+  let activeInput = event.target;
   if (event.type == 'blur') {
     clearPairwiseStyleClasses();
+    clearDescriptiveSentence(activeInput);
   } else {
     setTimeout(function() {
-      let activeInput = event.target;
       let relatedInput = document.getElementById(getRelatedInputId(activeInput.id));
       let activeValue = activeInput.value;
-      // let relatedValue = relatedInput.value;
+      //let relatedValue = relatedInput.value;
 
       clearPairwiseStyleClasses();
 
       if (activeValue) {
-        if (valueHasForwardSlash(activeValue)) {
+        if ( activeInput.readOnly ) {
+          // NOP
+        } else if (valueHasForwardSlash(activeValue)) {
           relatedInput.value = activeValue.split('/')[1];
           styleRowAsLoser(activeInput);
           styleColumnAsWinner(activeInput);
@@ -178,31 +213,116 @@ let handlePair = function(event) {
           styleRowAsWinner(activeInput);
           styleColumnAsLoser(activeInput);
         }
-
+        
         if (relatedInput) {
           relatedInput.classList.add('related');
         }
       }
+      else {
+        // Allow users to delete cell values
+        relatedInput.value = '';
+        clearPairwiseStyleClasses();
+      }
+
+      // Save the data!
+      saveInputValue(activeInput);
+      saveInputValue(relatedInput);
+
+      updateDescriptiveSentence(activeInput);
     });
   }
 }
 
+let saveInputValue = function(input) {
+  if ( input.readOnly ) {
+    return;
+  }
+
+  if ( input.value ) {
+    localStorage.setItem( "ahp."+input.id, input.value );
+  }
+  else {
+    localStorage.removeItem( "ahp."+input.id );
+  }
+}
+
+let loadInputValue = function(input) {
+  if ( input.readOnly ) {
+    // No action
+    return false;
+  }
+
+  let value = localStorage.getItem( "ahp."+input.id );
+
+  if ( value ) {
+    input.value = value;
+  }
+
+  return value ? true : false;
+}
+
+loadInputValue(goalInput);
+
 criteriaInputs.forEach(function(input) {
   input.addEventListener('blur', updateCriteriaTable);
+  if ( loadInputValue(input) ) {
+    updateCriteriaTable({'target':input, 'type':'blur'});
+  }
 });
 
 itemInputs.forEach(function(input) {
   input.addEventListener('blur', updateItemTables);
+  if ( loadInputValue(input) ) {
+    updateItemTables({'target':input, 'type':'blur'});
+  }
 });
 
 pairwiseInputs.forEach(function(input) {
   input.addEventListener('keyup', handlePair);
   input.addEventListener('blur', handlePair);
   input.addEventListener('focus', handlePair);
+  if ( loadInputValue(input) ) {
+    handlePair({'target':input, 'type':'blur'});
+  }
 });
 
 let safeName = function(s) {
   return s.replace(/\W/g, '_');
+}
+
+let resetForm = function(event) {
+  if ( confirm("Completely reset this form and LOSE all of your data?") ) {
+    localStorage.clear();
+    window.location = window.location.pathname;
+  }
+}
+
+let importForm = function(event) {
+  navigator.clipboard.readText().then(function(text) {
+    try {
+      let data = JSON.parse(text);
+      localStorage.clear(); // must follow parse function
+      Object.keys(data).forEach(function (k) {
+        localStorage.setItem(k, data[k]);
+      });
+      window.location = window.location.pathname;
+    } catch (e) {
+      alert("JSON string invalid: "+text.substring(1,32));
+    }
+  }, function(err) {
+    alert("There was a problem: "+err);
+  });
+}
+
+let exportForm = function(event) {
+  if ( confirm("Export this form to your clipboard as JSON?") ) {
+
+    navigator.clipboard.writeText(JSON.stringify(localStorage)).then(function() {
+      // NOP
+    }, function(err) {
+      alert("There was a problem: "+err);
+    });
+  }
 }
 
 let runAHP = function(event) {
@@ -343,3 +463,9 @@ let runAHP = function(event) {
 
 document.getElementById('calcbtn').addEventListener('click', runAHP);
 document.getElementById('calcbtn').addEventListener('keypress', runAHP);
+
+goalInput.addEventListener('blur', function(event) {
+  saveInputValue(event.target);
+});
+
+setTimeout( function() { clearPairwiseStyleClasses() }, 500 );

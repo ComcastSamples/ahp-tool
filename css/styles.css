@@ -101,9 +101,21 @@ h1 {
 
 h2 {
   color: #f16529;
+  margin-top: 90px;
   border-top: 1px solid #f16529;
   margin-bottom: 0;
   padding: 0.5em 0;
+}
+
+h3 {
+  height:18px;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+small {
+  padding-left: 30px;
+  color:#777;
 }
 
 textarea {
