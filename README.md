@@ -18,7 +18,7 @@ $ npm install
 
 $ npm run build
 
-$ npm run start
+$ npm start
 ```
 
 You can also click this link [index.html](index.html) in your browser after running `npm install`
