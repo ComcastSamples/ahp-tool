@@ -1,6 +1,6 @@
 # Analytic Hierarchy Process (AHP) Tool
 
-To try it out, go to [https://github.comcast.com/pages/gmckin202/ahp-tool/](https://github.comcast.com/pages/gmckin202/ahp-tool/)
+To try it out, go to [https://comcastsamples.github.io/ahp-tool/](https://comcastsamples.github.io/ahp-tool/)
 
 Pull requests are welcome :-)
 
