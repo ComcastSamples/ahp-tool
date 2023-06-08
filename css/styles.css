@@ -48,13 +48,13 @@ body {
 }
 
 .footer-container,
-.main aside {
+.main > aside {
   border-top: 20px solid #e44d26;
 }
 
 .header-container,
 .footer-container,
-.main aside {
+.main > aside {
   background: #f16529;
 }
 
@@ -76,7 +76,7 @@ header h1 {
   font-size: 2em;
 }
 
-.main aside {
+.main > aside {
   color: white;
   padding: 0px 5% 10px;
 }
@@ -86,7 +86,7 @@ header h1 {
   padding: 20px 0;
 }
 
-.main aside a,
+.main > aside a,
 .footer-container footer a {
   color: #ffc;
 }
@@ -110,6 +110,12 @@ h3 {
   height:18px;
   font-size: 1.2em;
   font-weight: bold;
+}
+
+form#ahpdata aside {
+  height: 1.2em;
+  font-size: 1.2em;
+  margin: -0.5em 0 0.5em;
 }
 
 small {
@@ -389,7 +395,7 @@ input.related {
    ==================== */
 
   .header-container,
-  .main aside {
+  .main > aside {
     -webkit-box-shadow: 0 5px 10px #aaa;
        -moz-box-shadow: 0 5px 10px #aaa;
         box-shadow: 0 5px 10px #aaa;
@@ -399,7 +405,7 @@ input.related {
   WIDE: Main
    ============ */
 
-  .main aside {
+  .main > aside {
     float: right;
     width: 28%;
   }
