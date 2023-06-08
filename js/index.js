@@ -454,11 +454,11 @@ let runAHP = function(event) {
 // real content is pasted.
 const dataManagementHelpText = "paste your backup here and click import";
 function dataManagementRemoveHelpText() {
-  let tb = document.getElementById("datamgmt");
-  if ( tb.value == dataManagementHelpText ) {
-    tb.value = '';
-  } else if ( tb.value.length == 0 ) {
-    tb.value = dataManagementHelpText;
+  let ta = document.getElementById("datamgmt");
+  if ( ta.value == dataManagementHelpText ) {
+    ta.value = '';
+  } else if ( ta.value.length == 0 ) {
+    ta.value = dataManagementHelpText;
   }
 }
 document.getElementById('datamgmt').addEventListener('focus', dataManagementRemoveHelpText);
