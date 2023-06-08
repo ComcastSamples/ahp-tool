@@ -119,8 +119,8 @@ form#ahpdata aside {
 }
 
 small {
-  padding-left: 30px;
-  color:#777;
+  padding-left: 1em;
+  color: #777;
 }
 
 textarea {
