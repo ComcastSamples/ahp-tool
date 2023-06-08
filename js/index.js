@@ -468,4 +468,8 @@ goalInput.addEventListener('blur', function(event) {
   saveInputValue(event.target);
 });
 
+// Auto-loading prior state during page load triggers calls to handlePair()
+// which uses setTimeout to asynchronously configure the cells. The function
+// clearPairwiseStyleClasses() needs to happen after (500ms) all that activity
+// to remove lingering dynamic styles intended for the user's visual focus.
 setTimeout( function() { clearPairwiseStyleClasses() }, 500 );
