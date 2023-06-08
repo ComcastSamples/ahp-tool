@@ -101,7 +101,6 @@ h1 {
 
 h2 {
   color: #f16529;
-  margin-top: 90px;
   border-top: 1px solid #f16529;
   margin-bottom: 0;
   padding: 0.5em 0;
@@ -131,6 +130,7 @@ textarea, input[type="text"] {
 
 table {
   border-spacing: 0;
+  margin-bottom: 90px;
 }
 
 td, th {
