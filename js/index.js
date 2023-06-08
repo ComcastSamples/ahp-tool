@@ -450,8 +450,7 @@ let runAHP = function(event) {
   return false;
 };
 
-// Provide data management textbox instructions that vanish when
-// real content is pasted.
+// Provide data management textarea instructions that vanish when real content is pasted
 const dataManagementHelpText = "paste your backup here and click import";
 function dataManagementRemoveHelpText() {
   let ta = document.getElementById("datamgmt");
