@@ -298,31 +298,20 @@ let resetForm = function(event) {
 }
 
 let importForm = function(event) {
-  navigator.clipboard.readText().then(function(text) {
-    try {
-      let data = JSON.parse(text);
-      localStorage.clear(); // must follow parse function
-      Object.keys(data).forEach(function (k) {
-        localStorage.setItem(k, data[k]);
-      });
-      window.location = window.location.pathname;
-    } catch (e) {
-      alert("JSON string invalid: "+text.substring(1,32));
-    }
-  }, function(err) {
-    alert("There was a problem: "+err);
-  });
+  try {
+    let data = JSON.parse(document.getElementById("datamgmt").value);
+    localStorage.clear(); // must follow parse function
+    Object.keys(data).forEach(function (k) {
+      localStorage.setItem(k, data[k]);
+    });
+    window.location = window.location.pathname;
+  } catch (e) {
+    alert("JSON string invalid: "+text.substring(1,32));
+  }
 }
 
 let exportForm = function(event) {
-  if ( confirm("Export this form to your clipboard as JSON?") ) {
-
-    navigator.clipboard.writeText(JSON.stringify(localStorage)).then(function() {
-      // NOP
-    }, function(err) {
-      alert("There was a problem: "+err);
-    });
-  }
+    document.getElementById("datamgmt").value = JSON.stringify(localStorage);
 }
 
 let runAHP = function(event) {
@@ -460,6 +449,22 @@ let runAHP = function(event) {
 
   return false;
 };
+
+// Provide data management textbox instructions that vanish when
+// real content is pasted.
+const dataManagementHelpText = "paste your backup here and click import";
+function dataManagementRemoveHelpText() {
+  let tb = document.getElementById("datamgmt");
+  if ( tb.value == dataManagementHelpText ) {
+    tb.value = '';
+  } else if ( tb.value.length == 0 ) {
+    tb.value = dataManagementHelpText;
+  }
+}
+document.getElementById('datamgmt').addEventListener('focus', dataManagementRemoveHelpText);
+document.getElementById('datamgmt').addEventListener('blur', dataManagementRemoveHelpText);
+dataManagementRemoveHelpText();
+
 
 document.getElementById('calcbtn').addEventListener('click', runAHP);
 document.getElementById('calcbtn').addEventListener('keypress', runAHP);

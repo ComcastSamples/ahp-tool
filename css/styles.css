@@ -123,13 +123,13 @@ small {
   color: #777;
 }
 
-textarea {
+textarea#goal {
   width: 100%;
   min-height: 175px;
   padding: 0.5em;
 }
 
-textarea, input[type="text"] {
+textarea#goal, input[type="text"] {
   font-size: 36px;
   box-sizing: border-box;
 }
@@ -166,6 +166,14 @@ button {
 
 .caps {
   text-transform: uppercase;
+}
+
+textarea#datamgmt {
+  font-size: small;
+  font-family: 'Courier New', Courier, monospace;
+  border: none;
+  width: 100%;
+  height: 10em;
 }
 
 /* ==========================================================================
@@ -414,7 +422,7 @@ input.related {
     width: 28%;
   }
 
-  textarea {
+  textarea#goal {
     width: 57%;
   }
 }
