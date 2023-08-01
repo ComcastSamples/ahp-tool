@@ -263,6 +263,10 @@ let loadInputValue = function(input) {
 
 loadInputValue(goalInput);
 
+goalInput.addEventListener('blur', function(event) {
+  saveInputValue(event.target);
+});
+
 criteriaInputs.forEach(function(input) {
   input.addEventListener('blur', updateCriteriaTable);
   if ( loadInputValue(input) ) {
@@ -290,11 +294,17 @@ let safeName = function(s) {
   return s.replace(/\W/g, '_');
 }
 
+// Data Management
+
 let resetForm = function(event) {
   if ( confirm("Completely reset this form and LOSE all of your data?") ) {
     localStorage.clear();
     window.location = window.location.pathname;
   }
+}
+
+let exportForm = function(event) {
+  document.getElementById("datamgmt").value = JSON.stringify(localStorage);
 }
 
 let importForm = function(event) {
@@ -310,9 +320,19 @@ let importForm = function(event) {
   }
 }
 
-let exportForm = function(event) {
-    document.getElementById("datamgmt").value = JSON.stringify(localStorage);
+// Provide data management textarea instructions that vanish when real content is pasted
+const dataManagementHelpText = "paste your exported data here & click import";
+function dataManagementRemoveHelpText() {
+  let ta = document.getElementById("datamgmt");
+  if ( ta.value == dataManagementHelpText ) {
+    ta.value = '';
+  } else if ( ta.value.length == 0 ) {
+    ta.value = dataManagementHelpText;
+  }
 }
+document.getElementById('datamgmt').addEventListener('focus', dataManagementRemoveHelpText);
+document.getElementById('datamgmt').addEventListener('blur', dataManagementRemoveHelpText);
+dataManagementRemoveHelpText();
 
 let runAHP = function(event) {
   let items = [];
@@ -450,27 +470,8 @@ let runAHP = function(event) {
   return false;
 };
 
-// Provide data management textarea instructions that vanish when real content is pasted
-const dataManagementHelpText = "paste your exported data here & click import";
-function dataManagementRemoveHelpText() {
-  let ta = document.getElementById("datamgmt");
-  if ( ta.value == dataManagementHelpText ) {
-    ta.value = '';
-  } else if ( ta.value.length == 0 ) {
-    ta.value = dataManagementHelpText;
-  }
-}
-document.getElementById('datamgmt').addEventListener('focus', dataManagementRemoveHelpText);
-document.getElementById('datamgmt').addEventListener('blur', dataManagementRemoveHelpText);
-dataManagementRemoveHelpText();
-
-
 document.getElementById('calcbtn').addEventListener('click', runAHP);
 document.getElementById('calcbtn').addEventListener('keypress', runAHP);
-
-goalInput.addEventListener('blur', function(event) {
-  saveInputValue(event.target);
-});
 
 // Auto-loading prior state during page load triggers calls to handlePair()
 // which uses setTimeout() to asynchronously configure the cells. The function
