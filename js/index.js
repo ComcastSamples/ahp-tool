@@ -213,7 +213,7 @@ let handlePair = function(event) {
           styleRowAsWinner(activeInput);
           styleColumnAsLoser(activeInput);
         }
-        
+
         if (relatedInput) {
           relatedInput.classList.add('related');
         }
@@ -451,7 +451,7 @@ let runAHP = function(event) {
 };
 
 // Provide data management textarea instructions that vanish when real content is pasted
-const dataManagementHelpText = "paste your backup here and click import";
+const dataManagementHelpText = "paste your exported data here & click import";
 function dataManagementRemoveHelpText() {
   let ta = document.getElementById("datamgmt");
   if ( ta.value == dataManagementHelpText ) {
