@@ -165,10 +165,10 @@ let clearDescriptiveSentence = function(input) {
   updateDescriptiveSentence(input, true);
 }
 
-let updateDescriptiveSentence = function(input, clear=false) {
+let updateDescriptiveSentence = function(input, clear) {
   let row = getPairwiseInputRow(input.id);
   let col = getPairwiseInputColumn(input.id);
-  
+
   if (inputIsCriteria(input)) {
     let A = document.getElementById('criteria'+row).value;
     let B = document.getElementById('criteria'+col).value;
