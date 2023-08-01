@@ -165,10 +165,10 @@ let clearDescriptiveSentence = function(input) {
   updateDescriptiveSentence(input, true);
 }
 
-let updateDescriptiveSentence = function(input, clear=false) {
+let updateDescriptiveSentence = function(input, clear) {
   let row = getPairwiseInputRow(input.id);
   let col = getPairwiseInputColumn(input.id);
-  
+
   if (inputIsCriteria(input)) {
     let A = document.getElementById('criteria'+row).value;
     let B = document.getElementById('criteria'+col).value;
@@ -213,7 +213,7 @@ let handlePair = function(event) {
           styleRowAsWinner(activeInput);
           styleColumnAsLoser(activeInput);
         }
-        
+
         if (relatedInput) {
           relatedInput.classList.add('related');
         }
@@ -263,6 +263,10 @@ let loadInputValue = function(input) {
 
 loadInputValue(goalInput);
 
+goalInput.addEventListener('blur', function(event) {
+  saveInputValue(event.target);
+});
+
 criteriaInputs.forEach(function(input) {
   input.addEventListener('blur', updateCriteriaTable);
   if ( loadInputValue(input) ) {
@@ -290,12 +294,20 @@ let safeName = function(s) {
   return s.replace(/\W/g, '_');
 }
 
+/* Begin Data Management */
+
 let resetForm = function(event) {
   if ( confirm("Completely reset this form and LOSE all of your data?") ) {
     localStorage.clear();
     window.location = window.location.pathname;
   }
 }
+document.getElementById('datamgmt_reset').addEventListener('click', resetForm);
+
+let exportForm = function(event) {
+  document.getElementById("datamgmt").value = JSON.stringify(localStorage);
+}
+document.getElementById('datamgmt_export').addEventListener('click', exportForm);
 
 let importForm = function(event) {
   try {
@@ -309,10 +321,23 @@ let importForm = function(event) {
     alert("JSON string invalid: "+text.substring(1,32));
   }
 }
+document.getElementById('datamgmt_import').addEventListener('click', importForm);
 
-let exportForm = function(event) {
-    document.getElementById("datamgmt").value = JSON.stringify(localStorage);
+// Provide data management textarea instructions that vanish when real content is pasted
+const dataManagementHelpText = "paste your exported data here & click import";
+function dataManagementRemoveHelpText() {
+  let ta = document.getElementById("datamgmt");
+  if ( ta.value == dataManagementHelpText ) {
+    ta.value = '';
+  } else if ( ta.value.length == 0 ) {
+    ta.value = dataManagementHelpText;
+  }
 }
+document.getElementById('datamgmt').addEventListener('focus', dataManagementRemoveHelpText);
+document.getElementById('datamgmt').addEventListener('blur', dataManagementRemoveHelpText);
+dataManagementRemoveHelpText();
+
+/* End Data Management */
 
 let runAHP = function(event) {
   let items = [];
@@ -450,30 +475,11 @@ let runAHP = function(event) {
   return false;
 };
 
-// Provide data management textarea instructions that vanish when real content is pasted
-const dataManagementHelpText = "paste your backup here and click import";
-function dataManagementRemoveHelpText() {
-  let ta = document.getElementById("datamgmt");
-  if ( ta.value == dataManagementHelpText ) {
-    ta.value = '';
-  } else if ( ta.value.length == 0 ) {
-    ta.value = dataManagementHelpText;
-  }
-}
-document.getElementById('datamgmt').addEventListener('focus', dataManagementRemoveHelpText);
-document.getElementById('datamgmt').addEventListener('blur', dataManagementRemoveHelpText);
-dataManagementRemoveHelpText();
-
-
 document.getElementById('calcbtn').addEventListener('click', runAHP);
 document.getElementById('calcbtn').addEventListener('keypress', runAHP);
 
-goalInput.addEventListener('blur', function(event) {
-  saveInputValue(event.target);
-});
-
 // Auto-loading prior state during page load triggers calls to handlePair()
 // which uses setTimeout() to asynchronously configure the cells. The function
-// clearPairwiseStyleClasses() needs to happen after (500ms) all that activity
+// clearPairwiseStyleClasses() needs to happen after all that activity
 // to remove lingering dynamic styles intended for the user's visual focus.
-setTimeout( function() { clearPairwiseStyleClasses() }, 500 );
+setTimeout(clearPairwiseStyleClasses);
