@@ -168,8 +168,20 @@ button {
   padding: 0.5em;
 }
 
-.caps {
+aside button {
+  font-size: 1em;
+  padding: 6px;
   text-transform: uppercase;
+  cursor: pointer;
+  border-radius: 8px;
+  background-color: #e44d26;
+  color: #ffc;
+  border: 2px solid #f08875;
+  border-color: #f08875 #7f2b22 #7f2b22 #f08875
+}
+
+aside button:focus {
+  background-color: #dd2d18;
 }
 
 textarea#datamgmt {

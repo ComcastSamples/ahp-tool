@@ -294,7 +294,7 @@ let safeName = function(s) {
   return s.replace(/\W/g, '_');
 }
 
-// Data Management
+/* Begin Data Management */
 
 let resetForm = function(event) {
   if ( confirm("Completely reset this form and LOSE all of your data?") ) {
@@ -302,10 +302,12 @@ let resetForm = function(event) {
     window.location = window.location.pathname;
   }
 }
+document.getElementById('datamgmt_reset').addEventListener('click', resetForm);
 
 let exportForm = function(event) {
   document.getElementById("datamgmt").value = JSON.stringify(localStorage);
 }
+document.getElementById('datamgmt_export').addEventListener('click', exportForm);
 
 let importForm = function(event) {
   try {
@@ -319,6 +321,7 @@ let importForm = function(event) {
     alert("JSON string invalid: "+text.substring(1,32));
   }
 }
+document.getElementById('datamgmt_import').addEventListener('click', importForm);
 
 // Provide data management textarea instructions that vanish when real content is pasted
 const dataManagementHelpText = "paste your exported data here & click import";
@@ -333,6 +336,8 @@ function dataManagementRemoveHelpText() {
 document.getElementById('datamgmt').addEventListener('focus', dataManagementRemoveHelpText);
 document.getElementById('datamgmt').addEventListener('blur', dataManagementRemoveHelpText);
 dataManagementRemoveHelpText();
+
+/* End Data Management */
 
 let runAHP = function(event) {
   let items = [];
