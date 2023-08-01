@@ -48,13 +48,13 @@ body {
 }
 
 .footer-container,
-.main aside {
+.main > aside {
   border-top: 20px solid #e44d26;
 }
 
 .header-container,
 .footer-container,
-.main aside {
+.main > aside {
   background: #f16529;
 }
 
@@ -76,7 +76,7 @@ header h1 {
   font-size: 2em;
 }
 
-.main aside {
+.main > aside {
   color: white;
   padding: 0px 5% 10px;
 }
@@ -86,7 +86,7 @@ header h1 {
   padding: 20px 0;
 }
 
-.main aside a,
+.main > aside a,
 .footer-container footer a {
   color: #ffc;
 }
@@ -106,19 +106,37 @@ h2 {
   padding: 0.5em 0;
 }
 
-textarea {
+h3 {
+  height:18px;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+form#ahpdata aside {
+  height: 1.2em;
+  font-size: 1.2em;
+  margin: -0.5em 0 0.5em;
+}
+
+small {
+  padding-left: 1em;
+  color: #777;
+}
+
+textarea#goal {
   width: 100%;
   min-height: 175px;
   padding: 0.5em;
 }
 
-textarea, input[type="text"] {
+textarea#goal, input[type="text"] {
   font-size: 36px;
   box-sizing: border-box;
 }
 
 table {
   border-spacing: 0;
+  margin-bottom: 70px;
 }
 
 td, th {
@@ -144,6 +162,18 @@ td input {
 button {
   font-size: 60px;
   padding: 0.5em;
+}
+
+.caps {
+  text-transform: uppercase;
+}
+
+textarea#datamgmt {
+  font-size: small;
+  font-family: 'Courier New', Courier, monospace;
+  border: none;
+  width: 100%;
+  height: 10em;
 }
 
 /* ==========================================================================
@@ -377,7 +407,7 @@ input.related {
    ==================== */
 
   .header-container,
-  .main aside {
+  .main > aside {
     -webkit-box-shadow: 0 5px 10px #aaa;
        -moz-box-shadow: 0 5px 10px #aaa;
         box-shadow: 0 5px 10px #aaa;
@@ -387,12 +417,12 @@ input.related {
   WIDE: Main
    ============ */
 
-  .main aside {
+  .main > aside {
     float: right;
     width: 28%;
   }
 
-  textarea {
+  textarea#goal {
     width: 57%;
   }
 }
