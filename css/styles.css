@@ -141,6 +141,7 @@ textarea#goal, input[type="text"] {
 table {
   border-spacing: 0;
   margin-bottom: 70px;
+  margin-top: 35px;
 }
 
 td, th {
